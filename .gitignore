@@ -1,0 +1,26 @@
+# Compiled Python files
+__pycache__/
+*.pyc
+
+# Virtual environment
+venv/
+.env/
+
+# Dash cache and logs
+.dash-*
+*.log
+
+# SQLite database file
+db/t212.db
+
+# IDE specific files
+.vscode/
+.idea/
+*.iml
+
+# Compiled Dash assets
+assets/*.css
+assets/*.js
+
+# Miscellaneous
+*.DS_Store
