@@ -2,6 +2,7 @@ from dash import Dash, Input, Output, dcc, html, State, callback
 import json
 import sqlite3
 import dash
+import dash_bootstrap_components as dbc
 from utils import *
 
 f_subs = open('subs.json')
@@ -15,6 +16,17 @@ dash.register_page(__name__)
 
 
 layout = html.Div([
+    # Navbar
+    dbc.NavbarSimple(
+        children=[
+            dbc.NavLink("Settings", href="/settings"),
+            # You can add more navigation links here if needed
+        ],
+        brand="Dashboard",
+        brand_href="/dashboard",
+        color="primary",
+        dark=True
+    ),
     html.H6("Please enter your username"),
     html.Div([
         "Username : ",
