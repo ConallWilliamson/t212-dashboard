@@ -13,7 +13,6 @@ layout = html.Div([
             html.Button('Submit', id='submit-val', n_clicks=0, style={'width': '100%'}),
             html.Div(id='auth-output'),
             # Store component to store the username
-            dcc.Store(id='user-info', storage_type='session'),
             # Location component for redirecting to the dashboard page
             dcc.Location(id='url', refresh=True)
         ], style={'width': '30%'}),

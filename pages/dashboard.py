@@ -17,37 +17,17 @@ dash.register_page(__name__)
 
 layout = html.Div([
     # Navbar
-    dbc.NavbarSimple(
-        children=[
+    dbc.Navbar(
+        dbc.Container([
+            dbc.Col(dbc.NavbarBrand("Navbar")),
             dbc.NavLink("Settings", href="/settings"),
             # You can add more navigation links here if needed
         ],
-        brand="Dashboard",
-        brand_href="/dashboard",
+        fluid = True),
         color="primary",
         dark=True
     ),
-    html.H6("Please enter your username"),
-    html.Div([
-        "Username : ",
-        dcc.Input(id='username-input', type='text')],
-        style={'margin-bottom': '10px'}
-    ),
 
-    html.Button('Submit', id='submit-val', n_clicks=0),
-    html.Div(id='my-output'),
-
-    
-    # New div to contain the API key input box, initially hidden
-    html.Div(id='api-key-container', style={'display': 'none'}, children=[
-        html.Div([
-            "API Key : ",
-            dcc.Input(id='api-key-input', type='text')],
-            style={'margin-top': '10px', 'margin-bottom': '10px'}
-        ),
-        html.Button('Submit API Key', id='submit-api-key', n_clicks=0),
-        html.Div(id='api-key-output')
-    ]),
 
 
     html.Button('Fetch all Pies', id='fetch-all', n_clicks=0),
@@ -65,30 +45,7 @@ layout = html.Div([
 
 
 
-# Callback to handle the submission of the API key
-@callback(
-    Output('api-key-output', 'children'),
-    Input('submit-api-key', 'n_clicks'),
-    State('username-input', 'value'),
-    State('api-key-input', 'value'),
-    prevent_initial_call=True
-)
-def submit_api_key(n_clicks, username, api_key):
-    # Check if the user already has an API key stored
-    conn = sqlite3.connect('db/t212.db')
-    cursor = conn.cursor()
-    cursor.execute('SELECT api_key FROM user WHERE user = ?', (username,))
-    result = cursor.fetchone()
 
-    if result is None:
-        # If the user doesn't have an API key stored, insert the new API key
-        cursor.execute('INSERT INTO user (user, api_key) VALUES (?, ?)', (username, api_key))
-        conn.commit()
-        conn.close()
-        return f'API key submitted for user "{username}".'
-    else:
-        conn.close()
-        return f'User "{username}" already has an API key stored: {result[0]}'
 
 @callback(
     Output('pie-dropdown', 'options'),
