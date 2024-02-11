@@ -16,19 +16,6 @@ dash.register_page(__name__)
 
 
 layout = html.Div([
-    # Navbar
-    dbc.Navbar(
-        dbc.Container([
-            dbc.Col(dbc.NavbarBrand("Navbar")),
-            dbc.NavLink("Settings", href="/settings"),
-            # You can add more navigation links here if needed
-        ],
-        fluid = True),
-        color="primary",
-        dark=True
-    ),
-
-
 
     html.Button('Fetch all Pies', id='fetch-all', n_clicks=0),
     html.Div(id='available-pies'),
