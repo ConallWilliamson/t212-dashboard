@@ -14,3 +14,6 @@
 
 ## Styling and Layout
 - [ ] Improve the styling and layout of the app
+
+## User info handling
+- [ ] Once user info is changed in the settings page, have it persist. 
